@@ -16,6 +16,7 @@ import '9 动画/FateRoute.dart';
 import '9 动画/HeroAnimationRoute.dart';
 import '9 动画/StaggerRoute.dart';
 import '9 动画/AnimatedSwitcherCounterRoute.dart';
+import '9 动画/OverAnimationComponent.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -62,7 +63,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final count = 15;
+    final count = 50;
     List list = new List<Map>();
     for (int i = 0; i < count; i++) {
       Map map = new Map();
@@ -111,8 +112,11 @@ class _MyHomePageState extends State<MyHomePage> {
       }else if (i == 14) {
         map["title"] = "通用“切换动画”组件";
         map["page"] = AnimationtedSwitcherCounterRoute();
+      }else if (i == 15) {
+        map["title"] = "动画过渡组件";
+        map["page"] = OverAnimationComponent();
       }
-      
+      if(map["title"] != null)
       list.add(map);
     }
 
