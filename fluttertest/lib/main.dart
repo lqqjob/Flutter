@@ -19,6 +19,11 @@ import '9 动画/AnimatedSwitcherCounterRoute.dart';
 import '9 动画/OverAnimationComponent.dart';
 void main() => runApp(MyApp());
 
+class RouteModel extends Object {
+  String title;
+  Widget widget;
+}
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -64,59 +69,59 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final count = 50;
-    List list = new List<Map>();
+    List list = new List<RouteModel>();
     for (int i = 0; i < count; i++) {
-      Map map = new Map();
+      RouteModel map =  RouteModel();
       if (i == 0) {
-        map["title"] = "导航返回拦截";
-        map["page"] = WillPopScopeTestRoute();
+        map.title = "导航返回拦截";
+        map.widget = WillPopScopeTestRoute();
       } else if (i == 1) {
-        map["title"] = "数据共享";
-        map["page"] = InheritedWidgetTestRoute();
+        map.title = "数据共享";
+        map.widget = InheritedWidgetTestRoute();
       } else if (i == 2) {
-        map["title"] = "跨组件状态共享";
-        map["page"] = ProviderRoute();
+        map.title = "跨组件状态共享";
+        map.widget = ProviderRoute();
       } else if (i == 3) {
-        map["title"] = "颜色跟主题";
-        map["page"] = ThemeTestRoute();
+        map.title = "颜色跟主题";
+        map.widget = ThemeTestRoute();
       } else if (i == 4) {
-        map["title"] = "异步UI更新（FutureBuider）";
-        map["page"] = FutureBuilderRoute();
+        map.title = "异步UI更新（FutureBuider）";
+        map.widget = FutureBuilderRoute();
       } else if (i == 5) {
-        map["title"] = "异步UI更新（StreamBuilder）";
-        map["page"] = StreamBuilderRoute();
+        map.title = "异步UI更新（StreamBuilder）";
+        map.widget = StreamBuilderRoute();
       } else if (i == 6) {
-        map["title"] = "对话框详解";
-        map["page"] = AlertDialogRoute();
+        map.title = "对话框详解";
+        map.widget = AlertDialogRoute();
       }else if (i == 7) {
-        map["title"] = "原始指针事件处理";
-        map["page"] = PointerEventRoute();
+        map.title = "原始指针事件处理";
+        map.widget = PointerEventRoute();
       }else if (i == 8) {
-        map["title"] = "手势识别";
-        map["page"] = GestureRoute();
+        map.title = "手势识别";
+        map.widget = GestureRoute();
       }else if (i == 9) {
-        map["title"] = "通知（Notification）";
-        map["page"] = NotificationRoute();
+        map.title = "通知（Notification）";
+        map.widget = NotificationRoute();
       }else if (i == 10) {
-        map["title"] = "动画结构";
-        map["page"] = ScaleAnimationRoute();
+        map.title = "动画结构";
+        map.widget = ScaleAnimationRoute();
       }else if (i == 11) {
-        map["title"] = "自定义动画路径";
-        map["page"] = ScaleAnimationRoute();
+        map.title = "自定义动画路径";
+        map.widget = ScaleAnimationRoute();
       }else if (i == 12) {
-        map["title"] = "Hero 动画";
-        map["page"] = HeroAnimationRoute();
+        map.title = "Hero 动画";
+        map.widget = HeroAnimationRoute();
       }else if (i == 13) {
-        map["title"] = "交织动画";
-        map["page"] = StaggerRoute();
+        map.title = "交织动画";
+        map.widget = StaggerRoute();
       }else if (i == 14) {
-        map["title"] = "通用“切换动画”组件";
-        map["page"] = AnimationtedSwitcherCounterRoute();
+        map.title = "通用“切换动画”组件";
+        map.widget = AnimationtedSwitcherCounterRoute();
       }else if (i == 15) {
-        map["title"] = "动画过渡组件";
-        map["page"] = OverAnimationComponent();
+        map.title = "动画过渡组件";
+        map.widget = OverAnimationComponent();
       }
-      if(map["title"] != null)
+      if(map.title != null)
       list.add(map);
     }
 
@@ -134,9 +139,9 @@ class _MyHomePageState extends State<MyHomePage> {
               return Divider(color: Colors.black12);
             },
             itemBuilder: (BuildContext context, int index) {
-              Map map = list[index];
-              String string = map["title"];
-              Widget route = map["page"];
+              RouteModel map = list[index];
+              String string = map.title;
+              Widget route = map.widget;
               return ListTile(
                 title: Text(string),
                 onTap: () {

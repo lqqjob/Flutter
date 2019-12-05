@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AnimationDecoratedBox1 extends StatefulWidget {
-  AnimationDecoratedBox1({
+class AnimatedDecoratedBox1 extends StatefulWidget {
+  AnimatedDecoratedBox1({
     Key key,
     @required this.decoration,
     this.child,
-    this.curve,
+    this.curve = Curves.linear,
     @required this.duration,
     this.reverseDuration,
   });
@@ -17,24 +17,25 @@ class AnimationDecoratedBox1 extends StatefulWidget {
   final Duration reverseDuration;
 
   @override
-  State<StatefulWidget> createState() {
-    return _AnimationDecoratedBox1State();
-  }
+  _AnimatedDecoratedBox1State createState() => _AnimatedDecoratedBox1State();
 }
 
-class _AnimationDecoratedBox1State extends State<AnimationDecoratedBox1>
+class _AnimatedDecoratedBox1State extends State<AnimatedDecoratedBox1>
     with SingleTickerProviderStateMixin {
+  @protected
   AnimationController get controller => _controller;
   AnimationController _controller;
+
   Animation<double> get animation => _animation;
   Animation<double> _animation;
+
   DecorationTween _tween;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _animation,
-      builder: (context, child) {
+      builder: (context, child){
         return DecoratedBox(
           decoration: _tween.animate(_animation).value,
           child: child,
@@ -57,36 +58,33 @@ class _AnimationDecoratedBox1State extends State<AnimationDecoratedBox1>
   }
 
   void _updateCurve() {
-    if (widget.curve != null) {
+    if (widget.curve != null)
       _animation = CurvedAnimation(parent: _controller, curve: widget.curve);
-    } else {
+    else
       _animation = _controller;
-    }
   }
+
 
   @override
-  void didUpdateWidget(AnimationDecoratedBox1 oldWidget) {
+  void didUpdateWidget(AnimatedDecoratedBox1 oldWidget) {
     super.didUpdateWidget(oldWidget);
-
-    if (widget.curve != oldWidget.curve) {
+    if (widget.curve != oldWidget.curve)
       _updateCurve();
-      _controller.duration = widget.duration;
-      _controller.reverseDuration = widget.reverseDuration;
-      if (widget.decoration != (_tween.end ?? _tween.begin)) {
-        _tween
-          ..begin = _tween.evaluate(_animation)
-          ..end = widget.decoration;
-        _controller
-          ..value = 0.0
-          ..forward();
-      }
+    _controller.duration = widget.duration;
+    _controller.reverseDuration = widget.reverseDuration;
+    if(widget.decoration!= (_tween.end ?? _tween.begin)){
+      _tween
+        ..begin = _tween.evaluate(_animation)
+        ..end = widget.decoration;
+      _controller
+        ..value = 0.0
+        ..forward();
     }
   }
+
   @override
   void dispose() {
     _controller.dispose();
-    super.dispose();    
+    super.dispose();
   }
-
-  
 }
