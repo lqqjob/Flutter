@@ -22,7 +22,7 @@ class _OverAnimationComponentState extends State<OverAnimationComponent> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          AnimatedDecoratedBox1(
+          AnimationDecoratedBox1(
             duration: duration,
             decoration: BoxDecoration(color: _decotationColor),
             child: FlatButton(
