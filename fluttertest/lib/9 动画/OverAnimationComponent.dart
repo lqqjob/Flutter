@@ -164,7 +164,6 @@ class _OverAnimationComponentState extends State<OverAnimationComponent> {
                 },
               ),
             ),
-
           ].map((e) {
             return Padding(
               padding: EdgeInsets.symmetric(vertical: 16),

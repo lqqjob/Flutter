@@ -88,7 +88,7 @@ class MySliderTransion extends AnimatedWidget {
   }
 }
 
-class  SliderTransitionX extends AnimatedWidget {
+class SliderTransitionX extends AnimatedWidget {
   SliderTransitionX(
       {Key key,
       @required Animation<double> position,

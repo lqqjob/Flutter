@@ -1,54 +1,55 @@
 import 'package:flutter/material.dart';
 
-class  StaggerAnimation extends StatelessWidget {
- StaggerAnimation({Key key,this.controller}):super(key:key) {
-   height = Tween<double>(
-     begin: .0,
-     end: 300,
-   ).animate(
-     CurvedAnimation(
-       parent: controller,
-       curve: Interval(0.0, 0.6,curve: Curves.ease)
-     )
-   );
+class StaggerAnimation extends StatelessWidget {
+  StaggerAnimation({Key key, this.controller}) : super(key: key) {
+    height = Tween<double>(
+      begin: .0,
+      end: 300,
+    ).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Interval(0.0, 0.6, curve: Curves.ease),
+      ),
+    );
 
-   color = ColorTween(
-     begin: Colors.green,
-     end: Colors.red,
-   ).animate(
-     CurvedAnimation(
-       parent: controller,
-       curve: Interval(0.0, 0.6,curve: Curves.ease)
-     )
-   );
+    color = ColorTween(
+      begin: Colors.green,
+      end: Colors.red,
+    ).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Interval(0.0, 0.6, curve: Curves.ease),
+      ),
+    );
 
-   padding = Tween<EdgeInsets>(
-     begin: EdgeInsets.only(left: .0),
-     end: EdgeInsets.only(left: 100.0),
-   ).animate(
-     CurvedAnimation(
-       parent: controller,
-       curve: Interval(0.6, 1.0,curve: Curves.ease)
-     )
-   );
- } 
- Animation<double> height;
- Animation<EdgeInsets>padding;
- Animation<Color> color;
- final Animation<double> controller;
- 
- Widget _buildAnimation(BuildContext context,Widget child) {
-   return Container(
-     alignment: Alignment.bottomCenter,
-     padding: padding.value,
-     child: Container(
-       color: color.value,
-       width: 50,
-       height: height.value,
-     ),
-   );
- }
- @override
+    padding = Tween<EdgeInsets>(
+      begin: EdgeInsets.only(left: .0),
+      end: EdgeInsets.only(left: 100.0),
+    ).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Interval(0.6, 1.0, curve: Curves.ease),
+      ),
+    );
+  }
+  Animation<double> height;
+  Animation<EdgeInsets> padding;
+  Animation<Color> color;
+  final Animation<double> controller;
+
+  Widget _buildAnimation(BuildContext context, Widget child) {
+    return Container(
+      alignment: Alignment.bottomCenter,
+      padding: padding.value,
+      child: Container(
+        color: color.value,
+        width: 50,
+        height: height.value,
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       builder: _buildAnimation,
@@ -57,38 +58,40 @@ class  StaggerAnimation extends StatelessWidget {
   }
 }
 
-class  StaggerRoute extends StatefulWidget {
+class StaggerRoute extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-   return _StaggerRouteState(); 
+    return _StaggerRouteState();
   }
 }
 
-class _StaggerRouteState extends State <StaggerRoute> with TickerProviderStateMixin{
+class _StaggerRouteState extends State<StaggerRoute>
+    with TickerProviderStateMixin {
   AnimationController _controller;
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: const Duration(milliseconds: 2000),vsync: this);
+    _controller = AnimationController(
+        duration: const Duration(milliseconds: 2000), vsync: this);
   }
 
-  Future <Null> _playAnimation() async {
+  Future<Null> _playAnimation() async {
     try {
       await _controller.forward().orCancel;
       await _controller.reverse().orCancel;
-    } on TickerCanceled {
-
-    }
+    } on TickerCanceled {}
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("交织动画"),),
+      appBar: AppBar(
+        title: Text("交织动画"),
+      ),
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: (){
+        onTap: () {
           _playAnimation();
         },
         child: Center(
