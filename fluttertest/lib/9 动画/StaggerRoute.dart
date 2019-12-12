@@ -61,7 +61,6 @@ class StaggerAnimation extends StatelessWidget {
 class StaggerRoute extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _StaggerRouteState();
   }
 }
@@ -73,7 +72,9 @@ class _StaggerRouteState extends State<StaggerRoute>
   void initState() {
     super.initState();
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 2000), vsync: this);
+      duration: const Duration(milliseconds: 2000),
+      vsync: this,
+    );
   }
 
   Future<Null> _playAnimation() async {
