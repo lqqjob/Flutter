@@ -17,6 +17,7 @@ import '9 动画/HeroAnimationRoute.dart';
 import '9 动画/StaggerRoute.dart';
 import '9 动画/AnimatedSwitcherCounterRoute.dart';
 import '9 动画/OverAnimationComponent.dart';
+import '10 自定义组件/GradientButtonRoute.dart';
 void main() => runApp(MyApp());
 
 class RouteModel extends Object {
@@ -120,6 +121,9 @@ class _MyHomePageState extends State<MyHomePage> {
       }else if (i == 15) {
         map.title = "动画过渡组件";
         map.widget = OverAnimationComponent();
+      }else if (i == 16) {
+        map.title = "组和现有组件";
+        map.widget = GrandientButtonRoute();
       }
       if(map.title != null)
       list.add(map);
