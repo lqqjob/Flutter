@@ -18,6 +18,7 @@ import '9 动画/StaggerRoute.dart';
 import '9 动画/AnimatedSwitcherCounterRoute.dart';
 import '9 动画/OverAnimationComponent.dart';
 import '10 自定义组件/GradientButtonRoute.dart';
+import '10 自定义组件/TurnBoxRoute.dart';
 void main() => runApp(MyApp());
 
 class RouteModel extends Object {
@@ -124,6 +125,9 @@ class _MyHomePageState extends State<MyHomePage> {
       }else if (i == 16) {
         map.title = "组和现有组件";
         map.widget = GrandientButtonRoute();
+      }else if (i == 17) {
+        map.title = "组合实例";
+        map.widget = TurnBoxRoute();
       }
       if(map.title != null)
       list.add(map);
