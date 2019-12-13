@@ -19,6 +19,7 @@ import '9 动画/AnimatedSwitcherCounterRoute.dart';
 import '9 动画/OverAnimationComponent.dart';
 import '10 自定义组件/GradientButtonRoute.dart';
 import '10 自定义组件/TurnBoxRoute.dart';
+import '10 自定义组件/CustomPaintRoute.dart';
 void main() => runApp(MyApp());
 
 class RouteModel extends Object {
@@ -128,6 +129,9 @@ class _MyHomePageState extends State<MyHomePage> {
       }else if (i == 17) {
         map.title = "组合实例";
         map.widget = TurnBoxRoute();
+      }else if(i == 18) {
+        map.title = "自绘组件";
+        map.widget = CustomPaintRoute();
       }
       if(map.title != null)
       list.add(map);
