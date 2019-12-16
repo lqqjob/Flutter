@@ -20,6 +20,7 @@ import '9 动画/OverAnimationComponent.dart';
 import '10 自定义组件/GradientButtonRoute.dart';
 import '10 自定义组件/TurnBoxRoute.dart';
 import '10 自定义组件/CustomPaintRoute.dart';
+import '10 自定义组件/GradientCircularPorgressRoute.dart';
 void main() => runApp(MyApp());
 
 class RouteModel extends Object {
@@ -132,6 +133,9 @@ class _MyHomePageState extends State<MyHomePage> {
       }else if(i == 18) {
         map.title = "自绘组件";
         map.widget = CustomPaintRoute();
+      }else if(i == 19) {
+        map.widget = GradientCircularPorgressRoute();
+        map.title = "自绘实例";
       }
       if(map.title != null)
       list.add(map);
