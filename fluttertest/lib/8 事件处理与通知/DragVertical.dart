@@ -34,7 +34,6 @@ class _DragValticalState extends State<DragValticalRoute> {
               //     _top += e.delta.dx;
               //   });
               // },
-  
             ),
           ),
         ],

@@ -21,6 +21,8 @@ import '10 自定义组件/GradientButtonRoute.dart';
 import '10 自定义组件/TurnBoxRoute.dart';
 import '10 自定义组件/CustomPaintRoute.dart';
 import '10 自定义组件/GradientCircularPorgressRoute.dart';
+import '11 文件操作与网络请求/FileOperationRoute.dart';
+
 void main() => runApp(MyApp());
 
 class RouteModel extends Object {
@@ -75,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final count = 50;
     List list = new List<RouteModel>();
     for (int i = 0; i < count; i++) {
-      RouteModel map =  RouteModel();
+      RouteModel map = RouteModel();
       if (i == 0) {
         map.title = "导航返回拦截";
         map.widget = WillPopScopeTestRoute();
@@ -97,48 +99,50 @@ class _MyHomePageState extends State<MyHomePage> {
       } else if (i == 6) {
         map.title = "对话框详解";
         map.widget = AlertDialogRoute();
-      }else if (i == 7) {
+      } else if (i == 7) {
         map.title = "原始指针事件处理";
         map.widget = PointerEventRoute();
-      }else if (i == 8) {
+      } else if (i == 8) {
         map.title = "手势识别";
         map.widget = GestureRoute();
-      }else if (i == 9) {
+      } else if (i == 9) {
         map.title = "通知（Notification）";
         map.widget = NotificationRoute();
-      }else if (i == 10) {
+      } else if (i == 10) {
         map.title = "动画结构";
         map.widget = ScaleAnimationRoute();
-      }else if (i == 11) {
+      } else if (i == 11) {
         map.title = "自定义动画路径";
         map.widget = ScaleAnimationRoute();
-      }else if (i == 12) {
+      } else if (i == 12) {
         map.title = "Hero 动画";
         map.widget = HeroAnimationRoute();
-      }else if (i == 13) {
+      } else if (i == 13) {
         map.title = "交织动画";
         map.widget = StaggerRoute();
-      }else if (i == 14) {
+      } else if (i == 14) {
         map.title = "通用“切换动画”组件";
         map.widget = AnimationtedSwitcherCounterRoute();
-      }else if (i == 15) {
+      } else if (i == 15) {
         map.title = "动画过渡组件";
         map.widget = OverAnimationComponent();
-      }else if (i == 16) {
+      } else if (i == 16) {
         map.title = "组和现有组件";
         map.widget = GrandientButtonRoute();
-      }else if (i == 17) {
+      } else if (i == 17) {
         map.title = "组合实例";
         map.widget = TurnBoxRoute();
-      }else if(i == 18) {
+      } else if (i == 18) {
         map.title = "自绘组件";
         map.widget = CustomPaintRoute();
-      }else if(i == 19) {
+      } else if (i == 19) {
         map.widget = GradientCircularPorgressRoute();
         map.title = "自绘实例";
+      } else if(i == 20) {
+        map.widget = FileOperationRoute();
+        map.title = "文件操作";
       }
-      if(map.title != null)
-      list.add(map);
+      if (map.title != null) list.add(map);
     }
 
     return Scaffold(
@@ -151,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
           constraints: BoxConstraints(minWidth: double.infinity),
           child: ListView.separated(
             itemCount: list.length,
-            separatorBuilder: (BuildContext contex,int index) {
+            separatorBuilder: (BuildContext contex, int index) {
               return Divider(color: Colors.black12);
             },
             itemBuilder: (BuildContext context, int index) {
@@ -161,13 +165,14 @@ class _MyHomePageState extends State<MyHomePage> {
               return ListTile(
                 title: Text(string),
                 onTap: () {
-                  if(index != 11){
+                  if (index != 11) {
                     Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (BuildContext context) => route));
-                  }else {//自定义动画路径
-                    Navigator.push(context, FadeRoute(builder: (context){
+                        context,
+                        CupertinoPageRoute(
+                            builder: (BuildContext context) => route));
+                  } else {
+                    //自定义动画路径
+                    Navigator.push(context, FadeRoute(builder: (context) {
                       return route;
                     }));
                   }

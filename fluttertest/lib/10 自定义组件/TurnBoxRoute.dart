@@ -17,7 +17,7 @@ class TurnBox extends StatefulWidget {
   }
 }
 
-class _TurnBoxState extends State<TurnBox> with SingleTickerProviderStateMixin{
+class _TurnBoxState extends State<TurnBox> with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   @override
   void initState() {
@@ -43,13 +43,14 @@ class _TurnBoxState extends State<TurnBox> with SingleTickerProviderStateMixin{
       child: widget.child,
     );
   }
+
   @override
   void didUpdateWidget(TurnBox oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if(oldWidget.turns != widget.turns) {
+    if (oldWidget.turns != widget.turns) {
       _animationController.animateTo(
         widget.turns,
-        duration: Duration(milliseconds: widget.speed??200),
+        duration: Duration(milliseconds: widget.speed ?? 200),
         curve: Curves.easeInOut,
       );
     }
@@ -57,16 +58,16 @@ class _TurnBoxState extends State<TurnBox> with SingleTickerProviderStateMixin{
 }
 
 class TurnBoxRoute extends StatefulWidget {
-@override
+  @override
   State<StatefulWidget> createState() {
-   return _TurnBoxRouteState(); 
+    return _TurnBoxRouteState();
   }
 }
 
-class _TurnBoxRouteState extends State <TurnBoxRoute> {
-double _turns = .0;
+class _TurnBoxRouteState extends State<TurnBoxRoute> {
+  double _turns = .0;
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -76,31 +77,37 @@ double _turns = .0;
         child: Column(
           children: <Widget>[
             TurnBox(
-            child:Icon(Icons.refresh,size: 50,),
-            speed: 500,
-            turns: _turns,
+              child: Icon(
+                Icons.refresh,
+                size: 50,
+              ),
+              speed: 500,
+              turns: _turns,
             ),
             TurnBox(
-            child:Icon(Icons.refresh,size: 150,),
-            speed: 2500,
-            turns: _turns,
+              child: Icon(
+                Icons.refresh,
+                size: 150,
+              ),
+              speed: 2500,
+              turns: _turns,
             ),
             RaisedButton(
-            child: Text("顺时针旋转1/5圈"),
-            onPressed: () {
-              setState(() {
-                _turns += .2;
-              });
-            },
-          ),
-          RaisedButton(
-            child: Text("逆时针旋转1/5圈"),
-            onPressed: () {
-              setState(() {
-                _turns -= .2;
-              });
-            },
-          ),
+              child: Text("顺时针旋转1/5圈"),
+              onPressed: () {
+                setState(() {
+                  _turns += .2;
+                });
+              },
+            ),
+            RaisedButton(
+              child: Text("逆时针旋转1/5圈"),
+              onPressed: () {
+                setState(() {
+                  _turns -= .2;
+                });
+              },
+            ),
           ],
         ),
       ),

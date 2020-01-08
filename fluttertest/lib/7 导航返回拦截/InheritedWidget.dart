@@ -8,7 +8,6 @@ class ShareDataWidget extends InheritedWidget {
   static ShareDataWidget of(BuildContext context) {
     return context.inheritFromWidgetOfExactType(ShareDataWidget);
     // return context.ancestorInheritedElementForWidgetOfExactType(ShareDataWidget).widget;
-
   }
 
   @override
@@ -26,7 +25,10 @@ class _TestWidget extends StatefulWidget {
 
 class _TestWidgetState extends State<_TestWidget> {
   Widget build(BuildContext context) {
-    return Text(ShareDataWidget.of(context).data.toString(),style: TextStyle(fontSize: 20,color: Colors.cyan),);
+    return Text(
+      ShareDataWidget.of(context).data.toString(),
+      style: TextStyle(fontSize: 20, color: Colors.cyan),
+    );
   }
 
   @override
@@ -63,7 +65,10 @@ class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
               FlatButton(
                 color: Colors.blue,
                 highlightColor: Colors.blue[700],
-                child: Text("Increment",style: TextStyle(color: Colors.white,fontSize: 20),),
+                child: Text(
+                  "Increment",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
                 onPressed: () {
                   setState(() {
                     ++count;

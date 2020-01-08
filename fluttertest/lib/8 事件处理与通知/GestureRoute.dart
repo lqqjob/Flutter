@@ -6,6 +6,7 @@ import 'ScaleRoute.dart';
 import 'GestureRecognizerRoute.dart';
 import 'GestureConflictRoute.dart';
 import 'BothDirectionRoute.dart';
+
 class GestureRoute extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -38,7 +39,7 @@ class _GestureRouteState extends State<GestureRoute> {
       } else if (i == 5) {
         map["title"] = "手势竞争";
         map["page"] = BothDirectionRoute();
-      }else if (i == 6) {
+      } else if (i == 6) {
         map["title"] = "手势冲突";
         map["page"] = GestureConflictRoute();
       }

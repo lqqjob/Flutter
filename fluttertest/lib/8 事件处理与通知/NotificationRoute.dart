@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class NotificationRoute extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -28,7 +26,7 @@ class _NotificationRouteState extends State<NotificationRoute> {
                 _msg += notification.msg + "  ";
               });
 
-              return true;// 阻止冒泡
+              return true; // 阻止冒泡
             },
             child: Center(
               child: Column(
@@ -38,7 +36,7 @@ class _NotificationRouteState extends State<NotificationRoute> {
                     builder: (context) {
                       return RaisedButton(
                         onPressed: () {
-                         new MyNotification("Hi").dispatch(context);
+                          new MyNotification("Hi").dispatch(context);
                         },
                         child: Text("Send Notication"),
                       );
@@ -55,5 +53,5 @@ class _NotificationRouteState extends State<NotificationRoute> {
 
 class MyNotification extends Notification {
   MyNotification(this.msg);
-  final  msg;
+  final msg;
 }

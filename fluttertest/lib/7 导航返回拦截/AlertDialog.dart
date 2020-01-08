@@ -205,7 +205,10 @@ class _AlertDialogRouteState extends State<AlertDialogRoute> {
                     CircularProgressIndicator(),
                     Padding(
                       padding: const EdgeInsets.only(top: 26.0),
-                      child: Text("正在加载，请稍后...",style: TextStyle(fontSize: 14,color: Colors.blue),),
+                      child: Text(
+                        "正在加载，请稍后...",
+                        style: TextStyle(fontSize: 14, color: Colors.blue),
+                      ),
                     )
                   ],
                 ),
@@ -215,38 +218,37 @@ class _AlertDialogRouteState extends State<AlertDialogRoute> {
         });
   }
 
-Future <DateTime> _showDatePickers1() {
-  var date = DateTime.now();
-  return showDatePicker(
-    context: context,
-    initialDate: date,
-    firstDate: date,
-    lastDate: date.add(
-      Duration(days: 30),
-    ),
-  );
-} 
+  Future<DateTime> _showDatePickers1() {
+    var date = DateTime.now();
+    return showDatePicker(
+      context: context,
+      initialDate: date,
+      firstDate: date,
+      lastDate: date.add(
+        Duration(days: 30),
+      ),
+    );
+  }
 
-Future <DateTime> _showDatePickers2() {
-  var date = DateTime.now();
-  return showCupertinoModalPopup(
-    context: context,
-    builder: (context) {
-      return SizedBox(
-        height: 200,
-        child: CupertinoDatePicker(
-          mode: CupertinoDatePickerMode.dateAndTime,
-          minimumDate: date,
-          maximumDate: date.add(Duration(days: 30)),
-          maximumYear: date.year + 1,
-          onDateTimeChanged: (DateTime dateTime) {
-            print(dateTime);
-          },
-        ),
-      );
-    }
-  );
-}
+  Future<DateTime> _showDatePickers2() {
+    var date = DateTime.now();
+    return showCupertinoModalPopup(
+        context: context,
+        builder: (context) {
+          return SizedBox(
+            height: 200,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.dateAndTime,
+              minimumDate: date,
+              maximumDate: date.add(Duration(days: 30)),
+              maximumYear: date.year + 1,
+              onDateTimeChanged: (DateTime dateTime) {
+                print(dateTime);
+              },
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -350,8 +352,8 @@ Future <DateTime> _showDatePickers2() {
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () async {
-             DateTime date = await _showDatePickers1();
-             print(date);
+              DateTime date = await _showDatePickers1();
+              print(date);
             },
           ),
           FlatButton(
@@ -361,8 +363,8 @@ Future <DateTime> _showDatePickers2() {
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () async {
-             DateTime date = await _showDatePickers2();
-             print(date);
+              DateTime date = await _showDatePickers2();
+              print(date);
             },
           )
         ],

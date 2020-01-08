@@ -18,19 +18,21 @@ class ChangeNotifierProvider<T extends ChangeNotifier> extends StatefulWidget {
   final Widget child;
   final T data;
   static Type _typeOf<T>() => T;
-  static T of<T>(BuildContext context,{bool listen = true}) {
+  static T of<T>(BuildContext context, {bool listen = true}) {
     final type = _typeOf<InheritedProvider<T>>();
     print(" aaaaaaaaaa $type");
-    final provider = listen ? context.inheritFromWidgetOfExactType(type)
-        as InheritedProvider<T> : context.ancestorInheritedElementForWidgetOfExactType(type)?.widget
-        as InheritedProvider<T>;
+    final provider = listen
+        ? context.inheritFromWidgetOfExactType(type) as InheritedProvider<T>
+        : context.ancestorInheritedElementForWidgetOfExactType(type)?.widget
+            as InheritedProvider<T>;
 
     print(" bbbbbbbbb $provider");
     return provider.data;
   }
 
   @override
-  _ChangeNotifierProviderState createState() => _ChangeNotifierProviderState<T>();
+  _ChangeNotifierProviderState createState() =>
+      _ChangeNotifierProviderState<T>();
 }
 
 class _ChangeNotifierProviderState<T extends ChangeNotifier>
@@ -83,13 +85,15 @@ class CarModel extends ChangeNotifier {
 class Consumer<T> extends StatelessWidget {
   Consumer({
     Key key,
-    @required this.builder,this.child,
-  }):assert (builder != null),super(key:key);
+    @required this.builder,
+    this.child,
+  })  : assert(builder != null),
+        super(key: key);
   final Widget child;
   final Widget Function(BuildContext context, T value) builder;
-  @override 
+  @override
   Widget build(BuildContext context) {
-    return builder (
+    return builder(
       context,
       ChangeNotifierProvider.of<T>(context),
     );
@@ -114,15 +118,17 @@ class _ProviderRouteState extends State<ProviderRoute> {
           child: Builder(builder: (context) {
             return Column(
               children: <Widget>[
-                Consumer<CarModel> (
-                  builder: (BuildContext context,cart) => Text("总价：${cart.totalPrice}"),
+                Consumer<CarModel>(
+                  builder: (BuildContext context, cart) =>
+                      Text("总价：${cart.totalPrice}"),
                 ),
                 Builder(builder: (context) {
                   print("RaisedButton build");
                   return RaisedButton(
                     child: Text("添加商品"),
                     onPressed: () {
-                      ChangeNotifierProvider.of<CarModel>(context,listen: false)
+                      ChangeNotifierProvider.of<CarModel>(context,
+                              listen: false)
                           .add(Item(20.0, 2));
                     },
                   );
