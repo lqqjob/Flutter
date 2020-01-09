@@ -23,6 +23,7 @@ import '10 自定义组件/CustomPaintRoute.dart';
 import '10 自定义组件/GradientCircularPorgressRoute.dart';
 import '11 文件操作与网络请求/FileOperationRoute.dart';
 import '11 文件操作与网络请求/HttpTestRoute.dart';
+import '11 文件操作与网络请求/FutrueBuilderRoute.dart';
 
 void main() => runApp(MyApp());
 
@@ -145,6 +146,9 @@ class _MyHomePageState extends State<MyHomePage> {
       } else if (i == 21) {
         map.widget = HttpTestRoute();
         map.title = "通过HttpClient发起HTTP请求";
+      }else if(i == 22) {
+        map.widget = FutrueBuilderRoute();
+        map.title = "Http请求-Dio http库";
       }
       if (map.title != null) list.add(map);
     }

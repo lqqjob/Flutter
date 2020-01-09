@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class HttpTestRoute extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _HttpTestRouteState();
   }
 }
@@ -15,7 +14,6 @@ class _HttpTestRouteState extends State<HttpTestRoute> {
   String _text = "";
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text("通过HttpClient发起HTTP请求"),
