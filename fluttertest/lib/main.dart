@@ -24,6 +24,7 @@ import '10 自定义组件/GradientCircularPorgressRoute.dart';
 import '11 文件操作与网络请求/FileOperationRoute.dart';
 import '11 文件操作与网络请求/HttpTestRoute.dart';
 import '11 文件操作与网络请求/FutrueBuilderRoute.dart';
+import '11 文件操作与网络请求/JsonToDartModel.dart';
 
 void main() => runApp(MyApp());
 
@@ -149,6 +150,9 @@ class _MyHomePageState extends State<MyHomePage> {
       }else if(i == 22) {
         map.widget = FutrueBuilderRoute();
         map.title = "Http请求-Dio http库";
+      } else if(i == 23) {
+        map.widget = JsonToDartModel();
+        map.title = "Json转Dart Model类";
       }
       if (map.title != null) list.add(map);
     }
