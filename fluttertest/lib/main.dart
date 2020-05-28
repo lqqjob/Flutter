@@ -1,30 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertest/8%20%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E4%B8%8E%E9%80%9A%E7%9F%A5/NotificationRoute.dart';
-import '7 导航返回拦截/WillPopScope.dart';
-import '7 导航返回拦截/InheritedWidget.dart';
-import '7 导航返回拦截/ProviderWidget.dart';
-import '7 导航返回拦截/ThemeRoute.dart';
-import 'package:fluttertest/7 导航返回拦截/ThemeRoute.dart';
-import 'package:fluttertest/7 导航返回拦截/FutureBuilder.dart';
-import 'package:fluttertest/7 导航返回拦截/StreamBuilder.dart';
-import 'package:fluttertest/7 导航返回拦截/AlertDialog.dart';
-import '8 事件处理与通知/PointerEventRoute.dart';
-import '8 事件处理与通知/GestureRoute.dart';
-import '9 动画/ScaleAnimationRoute.dart';
-import '9 动画/FateRoute.dart';
-import '9 动画/HeroAnimationRoute.dart';
-import '9 动画/StaggerRoute.dart';
-import '9 动画/AnimatedSwitcherCounterRoute.dart';
-import '9 动画/OverAnimationComponent.dart';
-import '10 自定义组件/GradientButtonRoute.dart';
-import '10 自定义组件/TurnBoxRoute.dart';
-import '10 自定义组件/CustomPaintRoute.dart';
-import '10 自定义组件/GradientCircularPorgressRoute.dart';
-import '11 文件操作与网络请求/FileOperationRoute.dart';
-import '11 文件操作与网络请求/HttpTestRoute.dart';
-import '11 文件操作与网络请求/FutrueBuilderRoute.dart';
-import '11 文件操作与网络请求/JsonToDartModel.dart';
+import 'package:fluttertest/StopNaviBack/AlertDialog.dart';
+import 'package:fluttertest/StopNaviBack/StreamBuilder.dart';
+import 'EventAndNotification/NotificationRoute.dart';
+import 'StopNaviBack/WillPopScope.dart';
+import 'StopNaviBack/InheritedWidget.dart';
+import 'StopNaviBack/ProviderWidget.dart';
+import 'StopNaviBack/ThemeRoute.dart';
+import 'EventAndNotification/PointerEventRoute.dart';
+import 'EventAndNotification/GestureRoute.dart';
+import 'Animation/ScaleAnimationRoute.dart';
+import 'Animation/FateRoute.dart';
+import 'Animation/HeroAnimationRoute.dart';
+import 'Animation/StaggerRoute.dart';
+import 'Animation/AnimatedSwitcherCounterRoute.dart';
+import 'Animation/OverAnimationComponent.dart';
+import 'CustomDart/GradientButtonRoute.dart';
+import 'CustomDart/TurnBoxRoute.dart';
+import 'CustomDart/CustomPaintRoute.dart';
+import 'CustomDart/GradientCircularPorgressRoute.dart';
+import 'FileAndNetWork/FileOperationRoute.dart';
+import 'FileAndNetWork/HttpTestRoute.dart';
+import 'FileAndNetWork/FutrueBuilderRoute.dart';
+import 'FileAndNetWork/JsonToDartModel.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,6 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -49,7 +48,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.cyan,
       ),
       home: MyHomePage(title: 'Flutter Test'),
     );
@@ -95,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
         map.widget = ThemeTestRoute();
       } else if (i == 4) {
         map.title = "异步UI更新（FutureBuider）";
-        map.widget = FutureBuilderRoute();
+        map.widget = FutrueBuilderRoute();
       } else if (i == 5) {
         map.title = "异步UI更新（StreamBuilder）";
         map.widget = StreamBuilderRoute();

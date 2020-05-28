@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:fluttertest/11 文件操作与网络请求/user.dart';
+import 'user.dart';
 
 class JsonToDartModel extends StatefulWidget {
   @override
