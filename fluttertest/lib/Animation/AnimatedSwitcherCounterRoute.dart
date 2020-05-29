@@ -24,10 +24,10 @@ class _AnimationtedSwitcherCounterRouteState
               transitionBuilder: (Widget child, Animation<double> animation) {
                 // return ScaleTransition(
                 //   child: child,
-                //   scale: animation,
                 // );
 
 // AnimatedSwitcher高级用法
+                //   scale: animation,
                 var tween =
                     Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0));
                 // return MySliderTransion(
