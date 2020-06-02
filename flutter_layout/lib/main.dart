@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'layout_demo.dart';
+import 'package:flutterlayout/root_page.dart';
+
 void main() => runApp(App());
 
 class App extends StatelessWidget {
@@ -9,7 +10,10 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Home(),
       theme: ThemeData(
-        primaryColor: Colors.blue,
+
+        primaryColor: Colors.grey,
+        highlightColor: Color.fromARGB(0, 0, 0, 0),
+        splashColor: Color.fromARGB(0,0 ,0 , 0),
       ),
     );
   }
@@ -22,7 +26,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter Demo'),
       ),
-      body: LayoutDemo(),
+      body:RootPage(),
     );
   }
 }
