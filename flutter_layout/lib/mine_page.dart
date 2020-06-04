@@ -135,7 +135,13 @@ class MinePage extends StatelessWidget {
               ),
             ),
           ), //列表
-          Container(), //相机
+          Container(
+            child: Positioned(
+              right: 20,
+              top: 40,
+              child: Image.asset('images/相机.png',height: 20,width: 20,),
+            ),
+          ), //相机
         ],
       ),
     ));
