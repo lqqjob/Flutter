@@ -37,7 +37,7 @@ class _DiscoverCellState extends State<DiscoverCell> {
       child:Column(
         children: <Widget>[
           Container(
-            height: 50,
+            height: 55,
             color: _backgroundColor,
             child: Container(
               margin: EdgeInsets.fromLTRB(15, 10, 15, 10),

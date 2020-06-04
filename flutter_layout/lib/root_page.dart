@@ -10,7 +10,7 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  int _currentIndex = 2;
+  int _currentIndex = 3;
 
   List<Widget> _pages = [ChatPage(), FriendsPage(), DisCoverPage(), MinePage()];
 
@@ -37,10 +37,20 @@ class _RootPageState extends State<RootPage> {
                 width: 20,
               ),
               title: Text('微信'),
+              activeIcon: Image.asset(
+                'images/tabbar_chat_hl.png',
+                height: 20,
+                width: 20,
+              ),
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
                 "images/tabbar_friends.png",
+                height: 20,
+                width: 20,
+              ),
+              activeIcon: Image.asset(
+                'images/tabbar_friends_hl.png',
                 height: 20,
                 width: 20,
               ),
@@ -52,11 +62,21 @@ class _RootPageState extends State<RootPage> {
                 height: 20,
                 width: 20,
               ),
+              activeIcon: Image.asset(
+                'images/tabbar_discover_hl.png',
+                height: 20,
+                width: 20,
+              ),
               title: Text('发现'),
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
                 "images/tabbar_mine.png",
+                height: 20,
+                width: 20,
+              ),
+              activeIcon: Image.asset(
+                'images/tabbar_mine_hl.png',
                 height: 20,
                 width: 20,
               ),
