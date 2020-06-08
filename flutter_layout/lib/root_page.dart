@@ -10,7 +10,7 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  int _currentIndex = 3;
+  int _currentIndex = 1;
 
   List<Widget> _pages = [ChatPage(), FriendsPage(), DisCoverPage(), MinePage()];
 
