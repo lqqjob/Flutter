@@ -13,6 +13,7 @@ class App extends StatelessWidget {
         primaryColor: Colors.grey,
         highlightColor: Color.fromARGB(0, 0, 0, 0),
         splashColor: Color.fromARGB(0,0 ,0 , 0),
+        cardColor: Color.fromRGBO(1, 1, 1, 0.65),
       ),
     );
   }
