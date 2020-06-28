@@ -1,8 +1,39 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutterlayout/Const.dart';
 import 'package:flutterlayout/discover/discover_cell.dart';
 
-class MinePage extends StatelessWidget {
+
+class MinePage extends StatefulWidget {
+  @override
+  _State createState() => _State();
+}
+
+class _State extends State<MinePage> {
+
+   MethodChannel _channel =  MethodChannel('mine_page/method');
+   File _avataFile;
+
+  @override
+  void initState() {
+
+    _channel.setMethodCallHandler((call) {
+      if(call.method == 'imagePath') {
+        String _imagePath = call.arguments.toString().substring(7);
+        print("imagePath $_imagePath");
+      setState(() {
+        _avataFile = File(_imagePath);
+      });
+      }
+      return null;
+    });
+
+    super.initState();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget _headWidget() {
@@ -13,14 +44,19 @@ class MinePage extends StatelessWidget {
         child: Container(
           child: Row(
             children: <Widget>[
-              Container(
-                height: 75,
-                width: 75,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                      image: AssetImage('images/IMG_0085.JPG'),
-                      fit: BoxFit.cover),
+              GestureDetector(
+                onTap: (){
+                  _channel.invokeMapMethod('picture');
+                },
+                child: Container(
+                  height: 75,
+                  width: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                        image: _avataFile == null ? AssetImage('images/IMG_0085.JPG'):FileImage(_avataFile),
+                        fit: BoxFit.cover),
+                  ),
                 ),
               ),
               SizedBox(
@@ -82,68 +118,71 @@ class MinePage extends StatelessWidget {
 
     return Scaffold(
         body: Container(
-      color: WechatThemeColor,
-      child: Stack(
-        children: <Widget>[
-          Container(
-            child: MediaQuery.removePadding(
-              removeTop: true,
-              context: context,
-              child: ListView(
-                children: <Widget>[
-                  _headWidget(),
-                  SizedBox(
-                    height: 10,
+          color: WechatThemeColor,
+          child: Stack(
+            children: <Widget>[
+              Container(
+                child: MediaQuery.removePadding(
+                  removeTop: true,
+                  context: context,
+                  child: ListView(
+                    children: <Widget>[
+                      _headWidget(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      DiscoverCell(
+                        imageName: 'images/微信 支付.png',
+                        title: '支付',
+                        showBottomLine: false,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      DiscoverCell(
+                        imageName: 'images/微信收藏.png',
+                        title: '收藏',
+                        showBottomLine: true,
+                      ),
+                      DiscoverCell(
+                        imageName: 'images/微信相册.png',
+                        title: '相册',
+                        showBottomLine: true,
+                      ),
+                      DiscoverCell(
+                        imageName: 'images/微信卡包.png',
+                        title: '卡包',
+                        showBottomLine: true,
+                      ),
+                      DiscoverCell(
+                        imageName: 'images/微信表情.png',
+                        title: '表情',
+                        showBottomLine: false,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      DiscoverCell(
+                        imageName: 'images/微信设置.png',
+                        title: '设置',
+                        showBottomLine: false,
+                      ),
+                    ],
                   ),
-                  DiscoverCell(
-                    imageName: 'images/微信 支付.png',
-                    title: '支付',
-                    showBottomLine: false,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  DiscoverCell(
-                    imageName: 'images/微信收藏.png',
-                    title: '收藏',
-                    showBottomLine: true,
-                  ),
-                  DiscoverCell(
-                    imageName: 'images/微信相册.png',
-                    title: '相册',
-                    showBottomLine: true,
-                  ),
-                  DiscoverCell(
-                    imageName: 'images/微信卡包.png',
-                    title: '卡包',
-                    showBottomLine: true,
-                  ),
-                  DiscoverCell(
-                    imageName: 'images/微信表情.png',
-                    title: '表情',
-                    showBottomLine: false,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  DiscoverCell(
-                    imageName: 'images/微信设置.png',
-                    title: '设置',
-                    showBottomLine: false,
-                  ),
-                ],
-              ),
-            ),
-          ), //列表
-          Container(
-            child: Positioned(
-              right: 20,
-              top: 40,
-              child: Image.asset('images/相机.png',height: 20,width: 20,),
-            ),
-          ), //相机
-        ],
-      ),
-    ));
+                ),
+              ), //列表
+              Container(
+                child: Positioned(
+                  right: 20,
+                  top: 40,
+                  child: Image.asset('images/相机.png',height: 20,width: 20,),
+                ),
+              ), //相机
+            ],
+          ),
+        ));
   }
 }
+
+
+

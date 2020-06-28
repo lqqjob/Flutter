@@ -81,6 +81,7 @@ class _State extends State<FriendsPage> {
               child: Image.asset(
                 'images/添加朋友.png',
                 width: 30,
+                color: Colors.grey[500],
               ),
             ),
           ),
