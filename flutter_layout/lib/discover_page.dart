@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutterlayout/Const.dart';
 import 'package:flutterlayout/discover/discover_cell.dart';
 
-class DisCoverPage extends StatelessWidget {
+
+class DisCoverPage extends StatefulWidget {
+  @override
+  _State createState() => _State();
+}
+
+class _State extends State<DisCoverPage>  with AutomaticKeepAliveClientMixin{
+  @override
+  bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,3 +94,6 @@ class DisCoverPage extends StatelessWidget {
     );
   }
 }
+
+
+

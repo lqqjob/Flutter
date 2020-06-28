@@ -8,7 +8,11 @@ class FriendsPage extends StatefulWidget {
   _State createState() => _State();
 }
 
-class _State extends State<FriendsPage> {
+class _State extends State<FriendsPage> with AutomaticKeepAliveClientMixin{
+
+  @override
+  bool get wantKeepAlive => true;
+
   final List<Friends> _headDatas = [
     Friends(imageUrl: 'images/新的朋友.png', name: '新的朋友'),
     Friends(imageUrl: 'images/群聊.png', name: '群聊'),

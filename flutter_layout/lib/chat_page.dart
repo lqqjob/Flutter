@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterlayout/Const.dart';
@@ -9,7 +7,11 @@ class ChatPage extends StatefulWidget {
   _State createState() => _State();
 }
 
-class _State extends State<ChatPage> {
+class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
+
+  @override
+  bool get wantKeepAlive => true;
+
   Future<List<Message>> getDatas() async {
     List<Message> messageList = [];
     final Dio dio = Dio();

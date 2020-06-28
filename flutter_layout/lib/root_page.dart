@@ -13,17 +13,34 @@ class _RootPageState extends State<RootPage> {
   int _currentIndex = 0;
 
   List<Widget> _pages = [ChatPage(), FriendsPage(), DisCoverPage(), MinePage()];
+  PageController _pageController;
+
+  @override
+  void initState() {
+    _pageController = PageController(initialPage: 0);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        body: _pages[_currentIndex],
+        body: PageView(
+          children: _pages,
+          controller: _pageController,
+          physics: NeverScrollableScrollPhysics(),
+          onPageChanged: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: (index) {
             setState(() {
               _currentIndex = index;
             });
+            _pageController.jumpToPage(index);
           },
           fixedColor: Colors.green,
           type: BottomNavigationBarType.fixed,

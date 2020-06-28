@@ -11,7 +11,10 @@ class MinePage extends StatefulWidget {
   _State createState() => _State();
 }
 
-class _State extends State<MinePage> {
+class _State extends State<MinePage> with AutomaticKeepAliveClientMixin{
+
+  @override
+  bool get wantKeepAlive => true;
 
    MethodChannel _channel =  MethodChannel('mine_page/method');
    File _avataFile;
