@@ -12,6 +12,8 @@ class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
+
+
   Future<List<Message>> getDatas() async {
     List<Message> messageList = [];
     final Dio dio = Dio();
@@ -37,23 +39,18 @@ class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
 
   @override
   void initState() {
-    getDatas().then((value) {
-      setState(() {
-        _dataList = value;
-      });
-    });
+//    getDatas().then((value) {
+//      setState(() {
+//        _dataList = value;
+//      });
+//    });
 
     super.initState();
   }
 
-  _cellForRow(BuildContext context, int index) {
-    return Container(
-      child: Text(_dataList[index].name),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     Widget _buildPopupMenuItem(String imageAss, String title) {
       return Row(
         children: <Widget>[
@@ -121,47 +118,64 @@ class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
         child:Stack(
           children: <Widget>[
             Container(color: WechatThemeColor,),
-            ListView.separated(
-                itemBuilder: (BuildContext context, int index) {
-                  if(index == 0) {
+            FutureBuilder<List>(
+              future:  getDatas(),
+              builder: (BuildContext context,AsyncSnapshot snapshot) {
+                if(snapshot.connectionState == ConnectionState.done) {
+                  if(snapshot.hasError) {
+                    return Text("Error: ${snapshot.error}");
+                  }else {
+                    _dataList = snapshot.data;
+                    return  ListView.separated(
+                        itemBuilder: (BuildContext context, int index) {
+                          if(index == 0) {
 
-                    return _seachBar();
+                            return _seachBar();
 
-                  }
-                  index = index -1;
-                  return Container(
-                    color: Colors.white,
-                    child: ListTile(
-                      title: Text(_dataList[index].name),
-                      subtitle: Container(
-                        child: Text(_dataList[index].message,overflow: TextOverflow.ellipsis,),
-                      ),
-                      leading: Container(
-                        height: 44,
-                        width: 44,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.0),
-                          image: DecorationImage(
-                            image: NetworkImage(_dataList[index].imageUrl),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  if(index == 0) {
-                    return Container(
-                      color: Colors.white,
+                          }
+                          index = index -1;
+                          return Container(
+                            color: Colors.white,
+                            child: ListTile(
+                              title: Text(_dataList[index].name),
+                              subtitle: Container(
+                                child: Text(_dataList[index].message,overflow: TextOverflow.ellipsis,),
+                              ),
+                              leading: Container(
+                                height: 44,
+                                width: 44,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  image: DecorationImage(
+                                    image: NetworkImage(_dataList[index].imageUrl),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          if(index == 0) {
+                            return Container(
+                              color: Colors.white,
 //                      child: Divider(thickness: 1,),
-                    );
+                            );
+                          }
+                          return Container(
+                            color: Colors.white,
+                            child: Divider(indent: 75,),
+                          );
+                        },
+                        itemCount: _dataList != null ? _dataList.length +1 : 0);
                   }
-                  return Container(
-                    color: Colors.white,
-                    child: Divider(indent: 75,),
+                }else {
+                  return Center(
+                    child: CircularProgressIndicator(),
                   );
-                },
-                itemCount: _dataList != null ? _dataList.length +1 : 0),
+                }
+              },
+            ),
+
           ],
         ),
       ),

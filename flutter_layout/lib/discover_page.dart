@@ -13,6 +13,7 @@ class _State extends State<DisCoverPage>  with AutomaticKeepAliveClientMixin{
   bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: WechatThemeColor,
