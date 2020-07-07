@@ -1,18 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterlayout/Const.dart';
+import 'package:flutterlayout/search_bar_page.dart';
 
 class ChatPage extends StatefulWidget {
   @override
   _State createState() => _State();
 }
 
-class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
-
+class _State extends State<ChatPage> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-
-
 
   Future<List<Message>> getDatas() async {
     List<Message> messageList = [];
@@ -39,12 +37,6 @@ class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
 
   @override
   void initState() {
-//    getDatas().then((value) {
-//      setState(() {
-//        _dataList = value;
-//      });
-//    });
-
     super.initState();
   }
 
@@ -115,31 +107,34 @@ class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
       ),
       body: Container(
         color: WechatThemeColor,
-        child:Stack(
+        child: Stack(
           children: <Widget>[
-            Container(color: WechatThemeColor,),
+            Container(
+              color: WechatThemeColor,
+            ),
             FutureBuilder<List>(
-              future:  getDatas(),
-              builder: (BuildContext context,AsyncSnapshot snapshot) {
-                if(snapshot.connectionState == ConnectionState.done) {
-                  if(snapshot.hasError) {
+              future: getDatas(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasError) {
                     return Text("Error: ${snapshot.error}");
-                  }else {
+                  } else {
                     _dataList = snapshot.data;
-                    return  ListView.separated(
+                    return ListView.separated(
                         itemBuilder: (BuildContext context, int index) {
-                          if(index == 0) {
-
+                          if (index == 0) {
                             return _seachBar();
-
                           }
-                          index = index -1;
+                          index = index - 1;
                           return Container(
                             color: Colors.white,
                             child: ListTile(
                               title: Text(_dataList[index].name),
                               subtitle: Container(
-                                child: Text(_dataList[index].message,overflow: TextOverflow.ellipsis,),
+                                child: Text(
+                                  _dataList[index].message,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                               leading: Container(
                                 height: 44,
@@ -147,7 +142,8 @@ class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(6.0),
                                   image: DecorationImage(
-                                    image: NetworkImage(_dataList[index].imageUrl),
+                                    image:
+                                        NetworkImage(_dataList[index].imageUrl),
                                   ),
                                 ),
                               ),
@@ -155,7 +151,7 @@ class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) {
-                          if(index == 0) {
+                          if (index == 0) {
                             return Container(
                               color: Colors.white,
 //                      child: Divider(thickness: 1,),
@@ -163,19 +159,21 @@ class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
                           }
                           return Container(
                             color: Colors.white,
-                            child: Divider(indent: 75,),
+                            child: Divider(
+                              indent: 75,
+                            ),
                           );
                         },
-                        itemCount: _dataList != null ? _dataList.length +1 : 0);
+                        itemCount:
+                            _dataList != null ? _dataList.length + 1 : 0);
                   }
-                }else {
+                } else {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
                 }
               },
             ),
-
           ],
         ),
       ),
@@ -184,8 +182,11 @@ class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
 
   Widget _seachBar() {
     return GestureDetector(
-      onTap: (){
-        print('点击搜索框');
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (BuildContext context) {
+          return SearchBarPage(messagesData: _dataList,);
+        }));
       },
       child: Container(
         height: 60,
@@ -194,9 +195,18 @@ class _State extends State<ChatPage>  with AutomaticKeepAliveClientMixin {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset('images/放大镜w.png',width: 23,color: Colors.grey[400],),
-              SizedBox(width: 5,),
-              Text('搜索',style: TextStyle(color: Colors.grey[400],fontSize: 16),)
+              Image.asset(
+                'images/放大镜w.png',
+                width: 23,
+                color: Colors.grey[400],
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Text(
+                '搜索',
+                style: TextStyle(color: Colors.grey[400], fontSize: 16),
+              )
             ],
           ),
           decoration: BoxDecoration(
